@@ -1,0 +1,65 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow">
+        <div class="card-body p-5">
+          <h2 class="text-center mb-4 text-success">
+            <i class="bi bi-lock-fill"></i> Login
+          </h2>
+          
+          <div *ngIf="successMessage" class="alert alert-success" role="alert">
+            {{ successMessage }}
+          </div>
+          
+          <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+          </div>
+
+          <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input 
+                type="email" 
+                class="form-control" 
+                id="email" 
+                [(ngModel)]="email"
+                name="email"
+                placeholder="Enter email"
+                required
+                email
+                #emailField="ngModel">
+              <div *ngIf="emailField.invalid && emailField.touched" class="text-danger small mt-1">
+                <span *ngIf="emailField.errors?.['required']">Email is required</span>
+                <span *ngIf="emailField.errors?.['email']">Please enter a valid email</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input 
+                type="password" 
+                class="form-control" 
+                id="password" 
+                [(ngModel)]="password"
+                name="password"
+                placeholder="Enter password"
+                required
+                #passwordField="ngModel">
+              <div *ngIf="passwordField.invalid && passwordField.touched" class="text-danger small mt-1">
+                <span *ngIf="passwordField.errors?.['required']">Password is required</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100" [disabled]="loginForm.invalid">
+              Login
+            </button>
+          </form>
+
+          <div class="text-center mt-3">
+            <p class="text-muted small">Don't have an account? <a routerLink="/register" class="text-success">Register here</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

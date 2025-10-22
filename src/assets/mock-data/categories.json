@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Vegetables",
+    "description": "Fresh and organic vegetables",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Vegetables"
+  },
+  {
+    "id": 2,
+    "name": "Fruits",
+    "description": "Seasonal fresh fruits",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Fruits"
+  },
+  {
+    "id": 3,
+    "name": "Organic",
+    "description": "100% organic products",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Organic"
+  },
+  {
+    "id": 4,
+    "name": "Dairy",
+    "description": "Fresh dairy products",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Dairy"
+  }
+]

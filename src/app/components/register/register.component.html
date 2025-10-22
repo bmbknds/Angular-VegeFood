@@ -1,0 +1,103 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow">
+        <div class="card-body p-5">
+          <h2 class="text-center mb-4 text-success">
+            <i class="bi bi-person-plus-fill"></i> Register
+          </h2>
+          
+          <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+          </div>
+
+          <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="username" 
+                [(ngModel)]="username"
+                name="username"
+                placeholder="Enter username"
+                required
+                minlength="3"
+                #usernameField="ngModel">
+              <div *ngIf="usernameField.invalid && usernameField.touched" class="text-danger small mt-1">
+                <span *ngIf="usernameField.errors?.['required']">Username is required</span>
+                <span *ngIf="usernameField.errors?.['minlength']">Username must be at least 3 characters</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input 
+                type="email" 
+                class="form-control" 
+                id="email" 
+                [(ngModel)]="email"
+                name="email"
+                placeholder="Enter email"
+                required
+                email
+                #emailField="ngModel">
+              <div *ngIf="emailField.invalid && emailField.touched" class="text-danger small mt-1">
+                <span *ngIf="emailField.errors?.['required']">Email is required</span>
+                <span *ngIf="emailField.errors?.['email']">Please enter a valid email</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input 
+                type="password" 
+                class="form-control" 
+                id="password" 
+                [(ngModel)]="password"
+                name="password"
+                placeholder="Enter password (min 6 characters)"
+                required
+                minlength="6"
+                #passwordField="ngModel">
+              <div *ngIf="passwordField.invalid && passwordField.touched" class="text-danger small mt-1">
+                <span *ngIf="passwordField.errors?.['required']">Password is required</span>
+                <span *ngIf="passwordField.errors?.['minlength']">Password must be at least 6 characters</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password</label>
+              <input 
+                type="password" 
+                class="form-control" 
+                id="confirmPassword" 
+                [(ngModel)]="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm password"
+                required
+                #confirmPasswordField="ngModel">
+              <div *ngIf="confirmPasswordField.invalid && confirmPasswordField.touched" class="text-danger small mt-1">
+                <span *ngIf="confirmPasswordField.errors?.['required']">Please confirm your password</span>
+              </div>
+              <div *ngIf="confirmPasswordField.valid && password !== confirmPassword && confirmPasswordField.touched" class="text-danger small mt-1">
+                Passwords do not match
+              </div>
+            </div>
+
+            <button 
+              type="submit" 
+              class="btn btn-success w-100" 
+              [disabled]="registerForm.invalid || password !== confirmPassword">
+              Register
+            </button>
+          </form>
+
+          <div class="text-center mt-3">
+            <p class="text-muted small">Already have an account? <a routerLink="/login" class="text-success">Login here</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
